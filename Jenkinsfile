@@ -12,12 +12,13 @@ pipeline {
             steps {
                 echo 'Working on Docker now ....'
                 pwsh(script: 'docker images -a')
-                pwsh(script: """
-                cd webapp\
-                docker build -t webappimage .
-                docker images -a
-                cd ..
-                """)
+                echo 'now changing the directory'
+                pwsh(script: 'cd webapp\')
+                echo 'building the image now'
+                pwsh(script: 'docker build -t webappimage .')
+                echo 'image creation complete....'
+                pwsh(script: 'docker images -a')
+                pwsh(script: 'cd ..')
             }
         }
          
